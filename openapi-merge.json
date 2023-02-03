@@ -1,0 +1,11 @@
+{
+  "inputs": [
+    {
+      "inputFile": "./src/modules/task/task.json"
+    },
+    {
+      "inputFile": "./src/modules/user/user.json"
+    }
+  ],
+  "output": "./src/output.openapi.json"
+}

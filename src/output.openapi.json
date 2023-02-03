@@ -1,0 +1,409 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Task Api Documentation",
+    "description": "Task Api Documentation",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:3000/api",
+      "description": "local server"
+    }
+  ],
+  "tags": [
+    {
+      "name": "User",
+      "description": "User Module"
+    },
+    {
+      "name": "Task",
+      "description": "Task Module"
+    }
+  ],
+  "paths": {
+    "/task/": {
+      "post": {
+        "tags": [
+          "Task"
+        ],
+        "summary": "create a task",
+        "description": "Create a task.",
+        "requestBody": {
+          "content": {
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/create_task"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/create_task"
+              }
+            }
+          }
+        },
+        "responses": {
+          "default": {
+            "description": "successful operation"
+          }
+        },
+        "security": [
+          {
+            "access_token": [
+              "access_token"
+            ]
+          }
+        ]
+      },
+      "patch": {
+        "tags": [
+          "Task"
+        ],
+        "summary": "Edit a task",
+        "description": "Edit a task.",
+        "requestBody": {
+          "content": {
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/edit_task"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/edit_task"
+              }
+            }
+          }
+        },
+        "responses": {
+          "default": {
+            "description": "successful operation"
+          }
+        },
+        "security": [
+          {
+            "access_token": [
+              "access_token"
+            ]
+          }
+        ]
+      },
+      "get": {
+        "tags": [
+          "Task"
+        ],
+        "summary": "Get all task",
+        "description": "get all task.",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/page"
+          },
+          {
+            "$ref": "#/components/parameters/limit"
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "successful operation"
+          }
+        },
+        "security": [
+          {
+            "access_token": [
+              "access_token"
+            ]
+          }
+        ]
+      }
+    },
+    "/task/{_id}": {
+      "delete": {
+        "tags": [
+          "Task"
+        ],
+        "summary": "Delete a task",
+        "description": "Delete a task.",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/_id"
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "successful operation"
+          }
+        },
+        "security": [
+          {
+            "access_token": [
+              "access_token"
+            ]
+          }
+        ]
+      }
+    },
+    "/task/sort": {
+      "put": {
+        "tags": [
+          "Task"
+        ],
+        "summary": "Sort task sequence.",
+        "description": "Sort task sequence.",
+        "requestBody": {
+          "content": {
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/sort_task"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/sort_task"
+              }
+            }
+          }
+        },
+        "responses": {
+          "default": {
+            "description": "successful operation"
+          }
+        },
+        "security": [
+          {
+            "access_token": [
+              "access_token"
+            ]
+          }
+        ]
+      }
+    },
+    "/user/signup": {
+      "post": {
+        "tags": [
+          "User"
+        ],
+        "summary": "Sign Up api",
+        "description": "Enter Your email and password.",
+        "requestBody": {
+          "content": {
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/login"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/login"
+              }
+            }
+          }
+        },
+        "responses": {
+          "default": {
+            "description": "successful operation"
+          }
+        }
+      }
+    },
+    "/user/login": {
+      "post": {
+        "tags": [
+          "User"
+        ],
+        "summary": "Login Api",
+        "description": "Enter Your details",
+        "requestBody": {
+          "content": {
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/login"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/login"
+              }
+            }
+          }
+        },
+        "responses": {
+          "default": {
+            "description": "successful operation"
+          }
+        }
+      }
+    },
+    "/user/verify-otp": {
+      "put": {
+        "tags": [
+          "User"
+        ],
+        "summary": "Verify Otp Api",
+        "description": "Enter Your Otp",
+        "requestBody": {
+          "content": {
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/verify_otp"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/verify_otp"
+              }
+            }
+          }
+        },
+        "responses": {
+          "default": {
+            "description": "successful operation"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "create_task": {
+        "type": "object",
+        "properties": {
+          "task": {
+            "type": "string",
+            "description": "Enter your task",
+            "default": "Task 1"
+          },
+          "date": {
+            "type": "string",
+            "format": "date",
+            "description": "Enter your task's date",
+            "default": "2017-01-01"
+          }
+        }
+      },
+      "edit_task": {
+        "type": "object",
+        "properties": {
+          "task_id": {
+            "type": "string",
+            "description": "Enter task id"
+          },
+          "task": {
+            "type": "string",
+            "description": "Enter  task",
+            "default": "Task 1"
+          },
+          "date": {
+            "type": "string",
+            "format": "date",
+            "description": "Enter your task's date",
+            "default": "2017-01-01"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "Completed",
+              "Incomplete"
+            ],
+            "description": "Enter task's status",
+            "default": "Incomplete"
+          }
+        },
+        "required": [
+          "task_id"
+        ]
+      },
+      "sort_task": {
+        "type": "object",
+        "properties": {
+          "task_sequence": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "login": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string",
+            "format": "email",
+            "description": "Enter your email",
+            "default": "sidtest1@yopmail.com"
+          },
+          "password": {
+            "type": "string",
+            "format": "password",
+            "description": "Enter your password"
+          }
+        },
+        "required": [
+          "email",
+          "password"
+        ]
+      },
+      "verify_otp": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string",
+            "format": "email",
+            "description": "Enter your email",
+            "default": "sidtest1@yopmail.com"
+          },
+          "otp": {
+            "type": "string",
+            "description": "Enter your otp"
+          }
+        },
+        "required": [
+          "email",
+          "otp"
+        ]
+      }
+    },
+    "parameters": {
+      "_id": {
+        "name": "_id",
+        "in": "path",
+        "required": true,
+        "schema": {
+          "type": "string"
+        },
+        "style": "form",
+        "explode": true
+      },
+      "page": {
+        "name": "page",
+        "in": "query",
+        "required": false,
+        "schema": {
+          "type": "number",
+          "format": "number"
+        },
+        "style": "form",
+        "explode": true
+      },
+      "limit": {
+        "name": "limit",
+        "in": "query",
+        "required": false,
+        "schema": {
+          "type": "number",
+          "format": "number"
+        },
+        "style": "form",
+        "explode": true
+      }
+    },
+    "securitySchemes": {
+      "access_token": {
+        "type": "apiKey",
+        "name": "authorization",
+        "in": "header"
+      }
+    }
+  }
+}

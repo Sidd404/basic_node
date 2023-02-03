@@ -1,0 +1,148 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Task Api Documentation",
+    "description": "Task Api Documentation",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:3000/api",
+      "description": "local server"
+    }
+  ],
+  "tags": [
+    {
+      "name": "User",
+      "description": "User Module"
+    },
+    {
+      "name": "Task",
+      "description": "Team Module"
+    }
+  ],
+  "paths": {
+    "/user/signup": {
+      "post": {
+        "tags": ["User"],
+        "summary": "Sign Up api",
+        "description": "Enter Your email and password.",
+        "requestBody": {
+          "content": {
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/login"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/login"
+              }
+            }
+          }
+        },
+        "responses": {
+          "default": {
+            "description": "successful operation"
+          }
+        }
+      }
+    },
+    "/user/login": {
+      "post": {
+        "tags": ["User"],
+        "summary": "Login Api",
+        "description": "Enter Your details",
+        "requestBody": {
+          "content": {
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/login"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/login"
+              }
+            }
+          }
+        },
+        "responses": {
+          "default": {
+            "description": "successful operation"
+          }
+        }
+      }
+    },
+    "/user/verify-otp": {
+      "put": {
+        "tags": ["User"],
+        "summary": "Verify Otp Api",
+        "description": "Enter Your Otp",
+        "requestBody": {
+          "content": {
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/verify_otp"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/verify_otp"
+              }
+            }
+          }
+        },
+        "responses": {
+          "default": {
+            "description": "successful operation"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "login": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string",
+            "format": "email",
+            "description": "Enter your email",
+            "default": "sidtest1@yopmail.com"
+          },
+          "password": {
+            "type": "string",
+            "format": "password",
+            "description": "Enter your password"
+          }
+        },
+        "required": ["email", "password"]
+      },
+      "verify_otp": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string",
+            "format": "email",
+            "description": "Enter your email",
+            "default": "sidtest1@yopmail.com"
+          },
+          "otp": {
+            "type": "string",
+            "description": "Enter your otp"
+          }
+        },
+        "required": ["email", "otp"]
+      }
+    },
+    "securitySchemes": {
+      "access_token": {
+        "type": "apiKey",
+        "name": "authorization",
+        "in": "header"
+      }
+    }
+  }
+}
