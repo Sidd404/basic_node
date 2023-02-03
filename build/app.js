@@ -27,7 +27,7 @@ app.use("/api/task", routes_1.default);
 app.use("/api/user", routes_2.default);
 var info = {
     version: 1.0,
-    title: "Company_Teams_task",
+    title: "Node_task",
     description: "Api`s for Task",
 };
 app.use("/api-docs", swagger_ui_express_1.default.serve, swagger_ui_express_1.default.setup(output_openapi_json_1.default));
