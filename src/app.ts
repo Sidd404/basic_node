@@ -31,7 +31,7 @@ app.use("/api/task", taskRoutes);
 app.use("/api/user", userRoutes);
 var info = {
   version: 1.0,
-  title: "Company_Teams_task",
+  title: "Node_task",
   description: "Api`s for Task",
 };
 
