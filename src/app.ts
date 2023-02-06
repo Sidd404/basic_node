@@ -21,12 +21,24 @@ app.use(
     saveUninitialized: true,
   })
 );
-
+app.use(cors({ origin: "*" }));
 app.use(express.json({ limit: "50mb" }));
 app.use(
   express.urlencoded({ limit: "50mb", extended: true, parameterLimit: 50000 })
 );
-app.use(cors());
+let swagger_url =
+  process.env.SCHEME +
+  "://" +
+  process.env.DOMAIN +
+  ":" +
+  process.env.PORT +
+  "/api-docs/#/";
+app.get("/", (req: any, res: any) => {
+  res.send(
+    `Hello, Please use the url to access swagger documentation, ${swagger_url} `
+  );
+});
+
 app.use("/api/task", taskRoutes);
 app.use("/api/user", userRoutes);
 var info = {
@@ -36,5 +48,5 @@ var info = {
 };
 
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swagger_document));
-connect_to_db()
+connect_to_db();
 export = app;
