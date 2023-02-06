@@ -7,7 +7,6 @@ import smtpTransport from "nodemailer-smtp-transport";
 var path = require("path");
 import random_string from "randomstring";
 
-
 const nodemailer_email = process.env.NODEMAILER_MAIL;
 const nodemailer_password = process.env.NODEMAILER_PASSWORD;
 
@@ -23,7 +22,7 @@ const transporter = nodemailer.createTransport(
 );
 
 class Common {
-  static async generate_otp(len: any){
+  static async generate_otp(len: any) {
     try {
       let options = {
         length: len,
@@ -34,7 +33,7 @@ class Common {
     } catch (err) {
       throw err;
     }
-  };
+  }
   static async send_email(to: string, subject: string, body: any) {
     try {
       let mailOptions = {
@@ -67,7 +66,7 @@ class Common {
     return new Promise((resolve, reject) => {
       try {
         let secret_key = process.env.JWT_SECRET_KEY;
-        const token = jwt.sign(data, secret_key, { expiresIn: "1h" });
+        const token = jwt.sign(data, secret_key, { expiresIn: "30000" });
         return resolve(token);
       } catch (error) {
         throw reject(error);

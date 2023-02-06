@@ -15,7 +15,7 @@ const app: Application = express();
 app.use(
   session({
     secret: "its my secret",
-    cookie: { maxAge: 60000 }, // value of maxAge is defined in milliseconds.
+    cookie: { maxAge: 30000 }, // value of maxAge is defined in milliseconds.
     resave: false,
     rolling: false,
     saveUninitialized: true,
