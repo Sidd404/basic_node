@@ -8,7 +8,7 @@
     "dev": "npx openapi-merge-cli && npx nodemon",
     "build:win": "npx openapi-merge-cli && rimraf ./build && tsc",
     "build": "npx openapi-merge-cli && rm -rf build && tsc",
-    "start": "npm run build:win && node build/bin/www.js"
+    "start": "npm run build && node build/bin/www.js"
   },
   "keywords": [],
   "author": "",
