@@ -14,7 +14,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const mongoose_1 = __importDefault(require("mongoose"));
 require("dotenv").config();
-var mongodb_url = process.env.MONGO_URI;
+var mongodb_url = process.env.MONGODB_URI;
+console.log("mongo uri -", mongodb_url);
 const connect_to_db = () => __awaiter(void 0, void 0, void 0, function* () {
     let options = {
         useNewUrlParser: true,

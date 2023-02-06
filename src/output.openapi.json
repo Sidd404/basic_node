@@ -7,7 +7,7 @@
   },
   "servers": [
     {
-      "url": "https://basic-node.vercel.app/api",
+      "url": "https://basicnode-production.up.railway.app/api",
       "description": "dev server"
     },
     {
