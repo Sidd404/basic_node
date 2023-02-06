@@ -1,40 +1,42 @@
 import app from "../app";
-import http from "http";
-import https from "http";
+import { createServer } from "http";
 import fs from "fs";
-require("dotenv").config();
+import cluster from "cluster";
+const totalCPUs = require("os").cpus().length;
 const port = process.env.PORT || 3000;
-let server: any;
 
-server.listen(port, () => {
-  console.log("server runnning on port -", port);
-});
+if (cluster.isPrimary) {
+  console.log(`Number of CPUs is ${totalCPUs}`);
+  console.log(`Master ${process.pid} is running`);
 
-if (process.env.NODE_ENV == "PROD") {
-  let key = fs.readFileSync(process.env.SSL_KEY);
-  let cert = fs.readFileSync(process.env.SSL_CERT);
-  let options: any = { key: key, cert: cert };
-  server = https.createServer(options, app);
+  // Fork workers.
+  for (let i = 0; i < totalCPUs; i++) {
+    cluster.fork();
+  }
 
-  server.listen(port, () => {
-    console.log(`Server running at port ${port}...`);
+  cluster.on("exit", (worker, code, signal) => {
+    console.log(`worker ${worker.process.pid} died`);
+    console.log("Let's fork another worker!");
+    cluster.fork();
   });
 } else {
-  server = http.createServer(app);
+  const server = createServer(app);
+  console.log(`Worker ${process.pid} started`);
+
   server.listen(port, () => {
-    console.log(`Server running at port ${port}...`);
+    console.log("server runnning on port -", port);
+    console.log(
+      "swagger url : ",
+      process.env.SCHEME +
+        "://" +
+        process.env.DOMAIN +
+        ":" +
+        process.env.PORT +
+        "/api-docs/#/"
+    );
+  });
+
+  server.on("warning", (warning) => {
+    console.log(warning.stack);
   });
 }
-
-console.log(
-  "swagger url : ",
-  process.env.SCHEME +
-    "://" +
-    process.env.DOMAIN +
-    ":" +
-    process.env.PORT +
-    "/api-docs/#/"
-);
-server.on("warning", (warning) => {
-  console.log(warning.stack);
-});
