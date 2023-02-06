@@ -44,7 +44,7 @@ app.use("/api/user", userRoutes);
 var info = {
   version: 1.0,
   title: "Node_task",
-  description: "Api`s for Task",
+  description: "Api`s for  Task",
 };
 
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swagger_document));
