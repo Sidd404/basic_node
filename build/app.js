@@ -37,7 +37,7 @@ app.use("/api/user", routes_2.default);
 var info = {
     version: 1.0,
     title: "Node_task",
-    description: "Api`s for Task",
+    description: "Api`s for  Task",
 };
 app.use("/api-docs", swagger_ui_express_1.default.serve, swagger_ui_express_1.default.setup(output_openapi_json_1.default));
 (0, db_connection_1.default)();

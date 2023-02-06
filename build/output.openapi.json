@@ -7,8 +7,8 @@
     },
     "servers": [
         {
-            "url": "https://basic-project.onrender.com/api",
-            "description": "live server"
+            "url": "https://basic-node.vercel.app/api",
+            "description": "dev server"
         },
         {
             "url": "http://localhost:3000/api",
