@@ -66,7 +66,7 @@ class Common {
     return new Promise((resolve, reject) => {
       try {
         let secret_key = process.env.JWT_SECRET_KEY;
-        const token = jwt.sign(data, secret_key, { expiresIn: "30000" });
+        const token = jwt.sign(data, secret_key, { expiresIn: "1h" });
         return resolve(token);
       } catch (error) {
         throw reject(error);

@@ -16,9 +16,9 @@ app.use(
   session({
     secret: "its my secret",
     cookie: { maxAge: 30000 }, // value of maxAge is defined in milliseconds.
-    resave: false,
+    resave: true,
     rolling: false,
-    saveUninitialized: true,
+    saveUninitialized: false,
   })
 );
 app.use(cors({ origin: "*" }));
