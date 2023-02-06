@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 require("dotenv").config();
-var mongodb_url = process.env.MONGO_URI;
-
+var mongodb_url = process.env.MONGODB_URI;
+console.log("mongo uri -", mongodb_url);
 const connect_to_db = async () => {
   let options = {
     useNewUrlParser: true,
