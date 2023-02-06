@@ -137,7 +137,7 @@ class UserServices {
                 let subject = "Welcome : Please login via otp";
                 let title = `Hi`;
                 let message = `Your 4 digit’s verification code is ${otp}.`;
-                let file_path = path_1.default.join(__dirname, "../../public/html/template_1.html");
+                let file_path = path_1.default.join(__dirname, "../../../public/html/template_1.html");
                 let html = fs_1.default.readFileSync(file_path, { encoding: "utf-8" });
                 html = html.replace("%TITLE%", title);
                 html = html.replace("%MESSAGE%", message);

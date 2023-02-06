@@ -36,5 +36,5 @@ var info = {
 };
 
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swagger_document));
-connect_to_db();
+connect_to_db()
 export = app;
